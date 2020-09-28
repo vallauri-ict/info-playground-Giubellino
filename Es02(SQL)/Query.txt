@@ -1,0 +1,83 @@
+1) SELECT Nome FROM Sala WHERE Citta = 'Pisa'
+
+
+2)SELECT Titolo FROM FILM WHERE Regista = 'F. Fellini' AND AnnoProduzione > 1960
+
+3)SELECT Titolo, Durata FROM FILM WHERE Genere = 'Fantascienza' AND AnnoProduzione > 1990 AND (Nazionalita = 'Francese' OR Nazionalita= 'Giapponese')
+
+4)SELECT Titolo 
+FROM FILM 
+WHERE Genere = 'Fantascienza' 
+AND AnnoProduzione > 1990
+AND Nazionalita='Giapponese'
+OR 
+(Nazionalita = 'Francese' AND Genere= 'Fantascienza')
+
+5)SELECT Titolo 
+FROM FILM 
+WHERE Regista=(SELECT Regista FROM FILM WHere Titolo='Casablanca')
+
+
+6)SELECT Titolo , Genere
+FROM FILM f, PROIEZIONI p
+WHERE p.DataProiezione= CAST('2004-12-25' as DATE)
+AND p.CodFilm = f.CodFilm
+
+
+7)SELECT Titolo , Genere
+FROM FILM f, PROIEZIONI p, Sala s
+WHERE p.DataProiezione= CAST('2004-12-25' as DATE)
+AND s.Citta='Napoli'
+AND s.CodSala = p.CodSala
+AND p.CodFilm = f.CodFilm
+
+8)SELECT s.Nome
+From film f, proiezioni p , Sala s, attori a, recita r
+where p.DataProiezione= CAST('2004-12-25' AS DATE)
+AND s.Citta='Napoli'
+AND s.CodSala = p.CodSala
+AND p.CodFilm = f.CodFilm
+AND a.Nome ='R.Williams'
+AND a.CodAttore = r.CodAttore
+AND r.CodFilm = f.CodFilm
+
+9)SELECT f.Titolo 
+FROM FILM f, RECITA r, ATTORI a
+WHERE f.CodFilm=r.CodFilm
+AND (a.Nome='M.Mastroianni' OR a.Nome='S.Loren')
+AND a.CodAttore=r.CodAttore
+
+10) SELECT DISTINCT F.Titolo
+FROM ATTORI A, RECITA R, FILM F
+WHERE A.Nome ='M.Mastroianni'
+AND A.CodAttore = R.CodAttore
+AND R.CodFilm IN (SELECT R.CodFilm FROM Attori A, Recita R WHERE A.Nome = 'S.Loren' AND A.CodAttore = R.CodAttore)
+AND R.CodFilm=F.CodFilm
+
+
+11)SELECT f.Titolo, a.Nome
+FROM FILM f, RECITA r, ATTORI a
+WHERE a.CodAttore = r.CodAttore
+AND a.Nazionalita='Francese'
+AND f.CodFilm=r.CodFilm
+
+12)SELECT f.Titolo, s.Nome
+FROM FILM f, Sala s, PROIEZIONI p
+WHERE s.Citta = 'Pisa'
+AND s.CodSala = p.CodSala
+AND (p.DataProiezione > CAST('2005-1-1' as DATE) AND p.DataProiezione < CAST('2005-1-31' as DATE)) 
+AND f.CodFilm = p.CodFilm 
+
+13)SELECT COUNT(CodSala)
+FROM Sala
+WHERE Citta='Pisa'
+AND Posti>60
+
+14)SELECT SUM(Posti)
+FROM Sala
+WHERE Citta='Pisa'
+
+15)SELECT Citta, Count(CodSala)
+FROM Sala
+GROUP BY Citta
+
