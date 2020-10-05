@@ -47,12 +47,16 @@ WHERE f.CodFilm=r.CodFilm
 AND (a.Nome='M.Mastroianni' OR a.Nome='S.Loren')
 AND a.CodAttore=r.CodAttore
 
-10) SELECT DISTINCT F.Titolo
-FROM ATTORI A, RECITA R, FILM F
-WHERE A.Nome ='M.Mastroianni'
-AND A.CodAttore = R.CodAttore
-AND R.CodFilm IN (SELECT R.CodFilm FROM Attori A, Recita R WHERE A.Nome = 'S.Loren' AND A.CodAttore = R.CodAttore)
-AND R.CodFilm=F.CodFilm
+10) SELECT f.Titolo
+FROM Film f
+WHERE 'M.Mastroianni' IN (SELECT a.Nome
+FROM Attori a, Recita r
+WHERE r.CodFilm = f.CodFilm
+AND r.CodAttore = a.CodAttore)
+AND 'S.Loren' IN (SELECT a.Nome
+FROM Attori a, Recita r
+WHERE r.CodFilm = f.CodFilm
+AND r.CodAttore = a.CodAttore)
 
 
 11)SELECT f.Titolo, a.Nome
@@ -77,7 +81,42 @@ AND Posti>60
 FROM Sala
 WHERE Citta='Pisa'
 
-15)SELECT Citta, Count(CodSala)
+15)SELECT Citta, Count(*)
 FROM Sala
 GROUP BY Citta
 
+16)SELECT s.Citta, COUNT(*) as Numero_Sale
+FROM Sala s
+WHERE s.Posti>60
+GROUP BY s.Citta
+
+17) SELECT f.Regista, COUNT(*) AS Numero_Film
+FROM Film f
+WHERE f.AnnoProduzione > 1990
+GROUP BY f.Regista
+
+18)SELECT f.Regista, SUM(p.Incasso) AS Incasso_Totale
+FROM Film f, Proiezioni p
+WHERE f.CodFilm = p.CodFilm
+GROUP BY f.Regista
+
+19) SELECT f.Titolo, COUNT(*) as NumeroProiezioni, SUM(p.Incasso) AS Incasso
+FROM Proiezioni p, Sala s, Film f
+WHERE f.CodFilm=p.CodFilm
+AND s.CodSala = p.CodSala
+AND s.Citta = 'Pisa'
+AND f.Regista = 'S.Spielberg'
+GROUP BY f.CodFilm,f.Titolo
+
+20) SELECT f.Regista, a.Nome, COUNT(*) AS NumeroFilm
+FROM Film f, Attori a, Recita r
+WHERE r.CodFilm= f.CodFilm
+AND r.CodAttore= r.CodAttore
+GROUP BY f.Regista, a.CodAttore, a.Nome
+
+21)SELECT f.Regista, f.Titolo
+FROM Film f, Recita r, Attori a
+WHERE f.CodFilm = r.CodFilm
+AND r.CodAttore = a.CodAttore
+GROUP BY f.CodFilm, f.Regista, f.Titolo
+HAVING COUNT(*) < 6
