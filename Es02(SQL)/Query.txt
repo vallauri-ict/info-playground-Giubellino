@@ -85,7 +85,6 @@ WHERE Citta='Pisa'
 FROM Sala
 GROUP BY Citta
 
-<<<<<<< HEAD
 16)SELECT s.Citta, COUNT(*) as Numero_Sale
 FROM Sala s
 WHERE s.Posti>60
@@ -121,7 +120,7 @@ WHERE f.CodFilm = r.CodFilm
 AND r.CodAttore = a.CodAttore
 GROUP BY f.CodFilm, f.Regista, f.Titolo
 HAVING COUNT(*) < 6
-=======
+
 26) SELECT f.Titolo, SUM(p.incasso)
 FROM Film f, Proiezioni p
 WHERE p.CodFilm=f.CodFilm
@@ -154,4 +153,4 @@ FROM Film f
 WHERE f.Regista='Fellini'
 AND Not Exists (SELECT * FROM Recita r, Film f, Attori a
 WHERE r.CodFilm=f.CodFilm)
->>>>>>> 48c2f9b416bea1bba54c0822faf5ef8c542a55cd
+
