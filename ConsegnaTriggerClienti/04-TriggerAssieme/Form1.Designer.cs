@@ -56,7 +56,8 @@
             // dgvStoricoCancellazioni
             // 
             this.dgvStoricoCancellazioni.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvStoricoCancellazioni.Location = new System.Drawing.Point(15, 225);
+            this.dgvStoricoCancellazioni.Location = new System.Drawing.Point(504, 30);
+            this.dgvStoricoCancellazioni.MultiSelect = false;
             this.dgvStoricoCancellazioni.Name = "dgvStoricoCancellazioni";
             this.dgvStoricoCancellazioni.Size = new System.Drawing.Size(586, 150);
             this.dgvStoricoCancellazioni.TabIndex = 1;
@@ -64,14 +65,15 @@
             // dgvStoricoAggiornamenti
             // 
             this.dgvStoricoAggiornamenti.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvStoricoAggiornamenti.Location = new System.Drawing.Point(15, 421);
+            this.dgvStoricoAggiornamenti.Location = new System.Drawing.Point(504, 240);
+            this.dgvStoricoAggiornamenti.MultiSelect = false;
             this.dgvStoricoAggiornamenti.Name = "dgvStoricoAggiornamenti";
-            this.dgvStoricoAggiornamenti.Size = new System.Drawing.Size(817, 150);
+            this.dgvStoricoAggiornamenti.Size = new System.Drawing.Size(586, 150);
             this.dgvStoricoAggiornamenti.TabIndex = 2;
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(499, 102);
+            this.btnUpdate.Location = new System.Drawing.Point(15, 186);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(152, 47);
             this.btnUpdate.TabIndex = 3;
@@ -81,7 +83,7 @@
             // 
             // btnElimina
             // 
-            this.btnElimina.Location = new System.Drawing.Point(499, 30);
+            this.btnElimina.Location = new System.Drawing.Point(358, 186);
             this.btnElimina.Name = "btnElimina";
             this.btnElimina.Size = new System.Drawing.Size(100, 44);
             this.btnElimina.TabIndex = 4;
@@ -101,7 +103,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 199);
+            this.label2.Location = new System.Drawing.Point(501, 14);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(105, 13);
             this.label2.TabIndex = 6;
@@ -110,7 +112,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 395);
+            this.label3.Location = new System.Drawing.Point(501, 218);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(107, 13);
             this.label3.TabIndex = 7;
@@ -118,7 +120,7 @@
             // 
             // btnRicaricaTabelle
             // 
-            this.btnRicaricaTabelle.Location = new System.Drawing.Point(692, 30);
+            this.btnRicaricaTabelle.Location = new System.Drawing.Point(182, 308);
             this.btnRicaricaTabelle.Name = "btnRicaricaTabelle";
             this.btnRicaricaTabelle.Size = new System.Drawing.Size(100, 44);
             this.btnRicaricaTabelle.TabIndex = 8;
@@ -130,7 +132,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(876, 581);
+            this.ClientSize = new System.Drawing.Size(1117, 429);
             this.Controls.Add(this.btnRicaricaTabelle);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -142,6 +144,7 @@
             this.Controls.Add(this.dgvClienti);
             this.Name = "Form1";
             this.Text = "Prova Trigger";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvClienti)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStoricoCancellazioni)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStoricoAggiornamenti)).EndInit();

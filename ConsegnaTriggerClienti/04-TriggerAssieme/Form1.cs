@@ -40,6 +40,11 @@ namespace _04_TriggerAssieme
             PopulateDgv(0);
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void PopulateDgv(int table)
         {
             switch (table)
@@ -162,7 +167,7 @@ namespace _04_TriggerAssieme
                         "', Cognome = '" + dgvClienti.Rows[index].Cells[2].Value.ToString() +
                         "', IdCarrello = " + dgvClienti.Rows[index].Cells[3].Value.ToString() +
                         " WHERE IdCliente = " + dgvClienti.Rows[index].Cells[0].Value.ToString();
-            MessageBox.Show(query);
+            //MessageBox.Show(query);
             Queryable(query, out daClienti);
 
             if (daClienti != null)
